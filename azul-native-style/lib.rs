@@ -26,6 +26,13 @@ pub const NATIVE_CSS: &str = concat!(
     include_str!("styles/shared/table.css"),
 );
 
+/// CSS mimicking the OS-native look - FreeBSD: `styles/native_freebsd.css`
+#[cfg(target_os="freebsd")]
+pub const NATIVE_CSS: &str = concat!(
+    include_str!("styles/native_freebsd.css"),
+    include_str!("styles/shared/table.css"),
+);
+
 /// Returns the native style for the OS
 pub fn native() -> Css {
     azul_css_parser::new_from_str(NATIVE_CSS).unwrap()
