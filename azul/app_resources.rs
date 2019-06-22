@@ -384,6 +384,15 @@ fn build_add_font_resource_updates<T: FontImageApi>(
                     hinting: FontHinting::LCD,
                 };
 
+                #[cfg(target_os = "freebsd")]
+                use webrender::api::{FontLCDFilter, FontHinting};
+
+                #[cfg(target_os = "freebsd")]
+                let platform_options = FontInstancePlatformOptions {
+                    lcd_filter: FontLCDFilter::Default,
+                    hinting: FontHinting::LCD,
+                };
+
                 #[cfg(target_os = "macos")]
                 let platform_options = FontInstancePlatformOptions::default();
 
